@@ -28,8 +28,8 @@ dependencies {
 
 
 pluginBundle {
-    website = 'https://geoint.nrlssc.org/'
-    vcsUrl = 'https://github.com/seanrl/nrl-gradle/nrl-plugin.git'
+    website = 'https://github.com/nrl-gradle/nrl-plugin'
+    vcsUrl = 'https://github.com/nrl-gradle/nrl-plugin.git'
     tags = ['nrl']
 }
 
