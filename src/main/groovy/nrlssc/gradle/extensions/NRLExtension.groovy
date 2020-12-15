@@ -30,8 +30,16 @@ class NRLExtension {
         this.project = project
     }
     
-    void setGroupCode(int cod){
-        groupCode = cod.toString()
+    void setGroupCode(String code){
+        this.groupCode = code
+    }
+    
+    void setGroupCode(int code){
+        groupCode = code.toString()
+    }
+    
+    String getGroupCode(){
+        return groupCode
     }
     
     void loadProperties()
