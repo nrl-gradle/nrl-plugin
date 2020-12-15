@@ -13,21 +13,25 @@ class NRLExtension {
     String nexusURL = 'https://nexus.di2e.net/nexus/content/repositories'
     String nexus3URL = 'https://nexus.di2e.net/nexus3/repository'
     boolean publishArti = true
+    boolean resolveArti = true
     boolean publishNexus = false
     boolean resolveNexus = false
-    boolean resolveArti = true
     
     String artiUsername = null
     String artiPassword = null
     String nexusUsername = null
     String nexusPassword = null
     
-    int groupCode = 7432
-
+    String groupCode = '7432'
+    
     private Project project
     NRLExtension(Project project)
     {
         this.project = project
+    }
+    
+    void setGroupCode(int cod){
+        groupCode = cod.toString()
     }
     
     void loadProperties()
@@ -81,7 +85,7 @@ class NRLExtension {
     
     
     
-    //region passthrough 
+    //region passthrough
     void setMajorVersion(int majorVersion) {
         project.hgit.setMajorVersion(majorVersion)
     }
