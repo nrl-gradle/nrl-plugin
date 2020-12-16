@@ -76,6 +76,15 @@ class NRLPlugin implements Plugin<Project>{
                     }
                 }
                 if (nrl.resolveNexus) {
+                    maven{
+                        url "$nrl.nexus3URL/repo1.maven.org"
+                        if (nrl.nexusPassword != null && nrl.nexusUsername != null) {
+                            credentials {
+                                username = nrl.nexusUsername
+                                password = nrl.nexusPassword
+                            }
+                        }
+                    }
                     maven {
                         url "$nrl.nexusURL/${RepoNames.NexusRelPubRepo.getName(nrl.groupCode)}"
                         if (nrl.nexusPassword != null && nrl.nexusUsername != null) {
