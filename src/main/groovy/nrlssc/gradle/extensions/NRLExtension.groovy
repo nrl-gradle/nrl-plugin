@@ -84,6 +84,10 @@ class NRLExtension {
         {
             this.publishNexus = PropertyName.publishNexus.getAsBoolean(project)
         }
+        if(PropertyName.groupCode.exists(project))
+        {
+            this.groupCode = PropertyName.groupCode.getAsString(project)
+        }
     }
     
     boolean remoteAllowed()
