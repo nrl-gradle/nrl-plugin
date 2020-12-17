@@ -3,7 +3,6 @@ package nrlssc.gradle.extensions
 import nrlssc.gradle.helpers.NRLPropertyName
 import nrlssc.gradle.helpers.PropertyName
 import org.gradle.api.Project
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonAppend
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -88,6 +87,12 @@ class NRLExtension {
         if(NRLPropertyName.groupCode.exists(project))
         {
             this.groupCode = NRLPropertyName.groupCode.getAsString(project)
+        }
+        
+        
+        if(this.groupCode == 'tsoa')
+        {
+            nexusURL = nexus3URL
         }
     }
     
