@@ -1,5 +1,6 @@
 package nrlssc.gradle.extensions
 
+import nrlssc.gradle.helpers.NRLPropertyName
 import nrlssc.gradle.helpers.PropertyName
 import org.gradle.api.Project
 import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonAppend
@@ -84,9 +85,9 @@ class NRLExtension {
         {
             this.publishNexus = PropertyName.publishNexus.getAsBoolean(project)
         }
-        if(PropertyName.groupCode.exists(project))
+        if(NRLPropertyName.groupCode.exists(project))
         {
-            this.groupCode = PropertyName.groupCode.getAsString(project)
+            this.groupCode = NRLPropertyName.groupCode.getAsString(project)
         }
     }
     
