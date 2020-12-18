@@ -19,7 +19,7 @@ dependencies {
     compile 'mil.navy.nrlssc:appdist-plugin:2.0.7'
     compile 'mil.navy.nrlssc:hgit-plugin:2.0.10'
     compile 'mil.navy.nrlssc:pub-plugin:2.0.6'
-    compile 'mil.navy.nrlssc:util-plugin:2.0.10'
+    compile 'mil.navy.nrlssc:util-plugin:2.0.11'
     
 
     testImplementation gradleTestKit(),
