@@ -24,8 +24,7 @@ class NRLPlugin implements Plugin<Project>{
         project.pluginManager.apply(HGitPlugin)
         project.pluginManager.apply(PubPlugin)
         project.pluginManager.apply(UtilPlugin)
-        
-        
+
 
         project.gradle.taskGraph.whenReady {
             for (Task tsk : project.gradle.taskGraph.getAllTasks()) {

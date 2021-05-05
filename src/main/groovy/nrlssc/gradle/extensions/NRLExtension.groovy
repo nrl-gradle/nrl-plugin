@@ -100,24 +100,4 @@ class NRLExtension {
     {
         return !project.hgit.isCI() && PropertyName.resolveRemote.getAsBoolean(project)
     }
-    
-    
-    
-    //region passthrough
-    void setMajorVersion(int majorVersion) {
-        project.hgit.setMajorVersion(majorVersion)
-    }
-
-    void setMajorVersion(String majorVersion) {
-        project.hgit.setMajorVersion(majorVersion)
-    }
-
-    void setMinorVersion(int minorVersion) {
-        project.hgit.setMinorVersion(minorVersion)
-    }
-
-    void setMinorVersion(String minorVersion) {
-        project.hgit.setMinorVersion(minorVersion)
-    }
-    //endregion passthrough
 }
