@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory
 class NRLExtension {
     private static Logger logger = LoggerFactory.getLogger(NRLExtension.class)
 
-    String artiURL = 'http://mingus.nrlssc.navy.mil/artifactory'
+    String artiURL = 'https://mingus.nrlssc.navy.mil/artifactory'
     String nexusURL = 'https://nexus.di2e.net/nexus/content/repositories'
     String nexus3URL = 'https://nexus.di2e.net/nexus3/repository'
     boolean publishArti = true
