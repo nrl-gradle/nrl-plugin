@@ -19,7 +19,7 @@ dependencies {
     compile localGroovy()
     compile 'mil.navy.nrlssc:appdist-plugin:2.0.17'
     compile 'mil.navy.nrlssc:hgit-plugin:2.0.47'
-    compile 'mil.navy.nrlssc:pub-plugin:2.0.14'
+    compile 'mil.navy.nrlssc:pub-plugin:2.0.15'
     compile 'mil.navy.nrlssc:util-plugin:2.0.10'
     
 
