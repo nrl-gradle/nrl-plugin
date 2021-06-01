@@ -47,6 +47,7 @@ class NRLPlugin implements Plugin<Project>{
                         } else {
                             url "$nrl.artiURL/list/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
                         }
+                        allowInsecureProtocol = true
 
                         patternLayout {
                             ivy "[organisation]/[module]/[revision]/ivys/ivy-[revision].xml"
@@ -66,6 +67,8 @@ class NRLPlugin implements Plugin<Project>{
                         } else {
                             url "$nrl.artiURL/list/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}"
                         }
+                        allowInsecureProtocol = true
+
                         if (nrl.artiPassword != null && nrl.artiUsername != null) {
                             credentials {
                                 username = nrl.artiUsername
