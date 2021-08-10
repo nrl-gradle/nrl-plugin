@@ -3,16 +3,13 @@ plugins{
     id 'groovy'
     id 'ivy-publish'
     id 'com.gradle.plugin-publish' version '0.11.0'
-    id 'nrlssc.gradle' version '3.0.86-b-SNAPSHOT'
+    id 'nrlssc.gradle' version '3.0.88'
 }
 
 
 sourceCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
-tasks.withType(Copy) {
-    it.duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
 
 hgit{
     forceGit = true
