@@ -5,7 +5,9 @@ import nrlssc.gradle.helpers.RepoNames
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.plugins.JavaPlugin
+import org.gradle.api.tasks.Copy
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -35,6 +37,10 @@ class NRLPlugin implements Plugin<Project>{
             }
         }
         project.group = 'mil.navy.nrlssc'
+
+        project.tasks.withType(Copy.class){
+            it.duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
         
         project.afterEvaluate {
             NRLExtension nrl = project.extensions.getByType(NRLExtension)

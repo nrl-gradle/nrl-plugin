@@ -10,17 +10,22 @@ plugins{
 sourceCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
+tasks.withType(Copy) {
+    it.duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 hgit{
     forceGit = true
 }
+
 
 dependencies {
     compileClasspath gradleApi()
     compileClasspath localGroovy()
     compileClasspath 'mil.navy.nrlssc:gplugin-commons:2.0.8'
     compileClasspath 'mil.navy.nrlssc:appdist-plugin:2.0.24'
-    compileClasspath 'mil.navy.nrlssc:hgit-plugin:2.0.47'
-    compileClasspath 'mil.navy.nrlssc:pub-plugin:2.0.20'
+    compileClasspath 'mil.navy.nrlssc:hgit-plugin:2.0.49'
+    compileClasspath 'mil.navy.nrlssc:pub-plugin:2.0.22'
     compileClasspath 'mil.navy.nrlssc:util-plugin:2.0.11'
 
     testCompileClasspath gradleTestKit(),
