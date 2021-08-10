@@ -3,7 +3,7 @@ plugins{
     id 'groovy'
     id 'ivy-publish'
     id 'com.gradle.plugin-publish' version '0.11.0'
-    id 'nrlssc.gradle' version '3.0.85'
+    id 'nrlssc.gradle' version '3.0.86-b-SNAPSHOT'
 }
 
 
@@ -20,13 +20,13 @@ hgit{
 
 
 dependencies {
-    compileClasspath gradleApi()
-    compileClasspath localGroovy()
-    compileClasspath 'mil.navy.nrlssc:gplugin-commons:2.0.8'
-    compileClasspath 'mil.navy.nrlssc:appdist-plugin:2.0.24'
-    compileClasspath 'mil.navy.nrlssc:hgit-plugin:2.0.49'
-    compileClasspath 'mil.navy.nrlssc:pub-plugin:2.0.22'
-    compileClasspath 'mil.navy.nrlssc:util-plugin:2.0.11'
+    api gradleApi()
+    implementation localGroovy()
+    api 'mil.navy.nrlssc:gplugin-commons:2.0.8'
+    api 'mil.navy.nrlssc:appdist-plugin:2.0.24'
+    api 'mil.navy.nrlssc:hgit-plugin:2.0.49'
+    api 'mil.navy.nrlssc:pub-plugin:2.0.22'
+    api 'mil.navy.nrlssc:util-plugin:2.0.11'
 
     testCompileClasspath gradleTestKit(),
             'junit:junit:4.12'
