@@ -21,7 +21,7 @@ dependencies {
     implementation localGroovy()
     api 'mil.navy.nrlssc:gplugin-commons:2.0.8'
     api 'mil.navy.nrlssc:appdist-plugin:2.0.24'
-    api 'mil.navy.nrlssc:hgit-plugin:2.0.49'
+    api 'mil.navy.nrlssc:hgit-plugin:3.0.51'
     api 'mil.navy.nrlssc:pub-plugin:2.0.22'
     api 'mil.navy.nrlssc:util-plugin:2.0.11'
 
