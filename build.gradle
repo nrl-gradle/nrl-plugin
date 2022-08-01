@@ -19,10 +19,10 @@ hgit{
 dependencies {
     api gradleApi()
     implementation localGroovy()
-    api 'mil.navy.nrlssc:gplugin-commons:3.0.11'
-    api 'mil.navy.nrlssc:appdist-plugin:3.0.30'
-    api 'mil.navy.nrlssc:hgit-plugin:3.0.56'
-    api 'mil.navy.nrlssc:pub-plugin:3.0.25'
+    api 'mil.navy.nrlssc:gplugin-commons:3.0.13'
+    api 'mil.navy.nrlssc:appdist-plugin:3.0.31'
+    api 'mil.navy.nrlssc:hgit-plugin:3.0.57'
+    api 'mil.navy.nrlssc:pub-plugin:3.0.26'
     api 'mil.navy.nrlssc:util-plugin:3.0.15'
 
     testCompileClasspath gradleTestKit(),
