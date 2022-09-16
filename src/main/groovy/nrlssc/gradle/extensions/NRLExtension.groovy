@@ -1,6 +1,5 @@
 package nrlssc.gradle.extensions
 
-import nrlssc.gradle.helpers.NRLPropertyName
 import nrlssc.gradle.helpers.PropertyName
 import org.gradle.api.Project
 import org.slf4j.Logger
@@ -10,19 +9,14 @@ class NRLExtension {
     private static Logger logger = LoggerFactory.getLogger(NRLExtension.class)
 
     String artiURL = 'http://mingus.nrlssc.navy.mil/artifactory'
-    String nexusURL = 'https://nexus.di2e.net/nexus/content/repositories'
-    String nexus3URL = 'https://nexus.di2e.net/nexus3/repository'
+    String gitlabURL = 'https://gitlab.nrlssc.org'
     boolean publishArti = true
     boolean resolveArti = true
-    boolean publishNexus = false
-    boolean resolveNexus = false
+    boolean publishGitlab = false
+    boolean resolveGitlab = false
+
     
-    String artiUsername = null
-    String artiPassword = null
-    String nexusUsername = null
-    String nexusPassword = null
-    
-    String groupCode = '7432'
+    String groupCode = 'NRLSSCGEO'
     
     private Project project
     NRLExtension(Project project)
@@ -48,51 +42,28 @@ class NRLExtension {
         {
             this.artiURL = PropertyName.artiURL.getAsString(project)
         }
-        if(PropertyName.nexusURL.exists(project))
-        {
-            this.nexusURL = PropertyName.nexusURL.getAsString(project)
-        }
-        if(PropertyName.artiUsername.exists(project))
-        {
-            this.artiUsername = PropertyName.artiUsername.getAsString(project)
-        }
-        if(PropertyName.artiPassword.exists(project))
-        {
-            this.artiPassword = PropertyName.artiPassword.getAsString(project)
-        }
-        if(PropertyName.nexusUsername.exists(project))
-        {
-            this.nexusUsername = PropertyName.nexusUsername.getAsString(project)
-        }
-        if(PropertyName.nexusPassword.exists(project))
-        {
-            this.nexusPassword = PropertyName.nexusPassword.getAsString(project)
+        if(PropertyName.gitlabURL.exists(project)) {
+            this.gitlabURL = PropertyName.gitlabURL.getAsString(project)
         }
         if(PropertyName.resolveArti.exists(project))
         {
             this.resolveArti = PropertyName.resolveArti.getAsBoolean(project)
         }
-        if(PropertyName.resolveNexus.exists(project))
+        if(PropertyName.resolveGitlab.exists(project))
         {
-            this.resolveNexus = PropertyName.resolveNexus.getAsBoolean(project)
+            this.resolveGitlab = PropertyName.resolveGitlab.getAsBoolean(project)
         }
         if(PropertyName.publishArti.exists(project))
         {
             this.publishArti = PropertyName.publishArti.getAsBoolean(project)
         }
-        if(PropertyName.publishNexus.exists(project))
+        if(PropertyName.publishGitlab.exists(project))
         {
-            this.publishNexus = PropertyName.publishNexus.getAsBoolean(project)
+            this.publishGitlab = PropertyName.publishGitlab.getAsBoolean(project)
         }
-        if(NRLPropertyName.groupCode.exists(project))
+        if(PropertyName.groupCode.exists(project))
         {
-            this.groupCode = NRLPropertyName.groupCode.getAsString(project)
-        }
-        
-        
-        if(this.groupCode == 'tsoa')
-        {
-            nexusURL = nexus3URL
+            this.groupCode = PropertyName.groupCode.getAsString(project)
         }
     }
     

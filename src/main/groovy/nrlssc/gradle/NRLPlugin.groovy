@@ -1,6 +1,7 @@
 package nrlssc.gradle
 
 import nrlssc.gradle.extensions.NRLExtension
+import nrlssc.gradle.helpers.PropertyName
 import nrlssc.gradle.helpers.RepoNames
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -45,6 +46,12 @@ class NRLPlugin implements Plugin<Project>{
         project.afterEvaluate {
             NRLExtension nrl = project.extensions.getByType(NRLExtension)
 
+            String artiUN = PropertyName.artiUsername.getAsString(project)
+            String artiPW = PropertyName.artiPassword.getAsString(project)
+            String glUN = PropertyName.gitlabUsername.getAsString(project)
+            String glPW = PropertyName.gitlabPassword.getAsString(project)
+
+
             project.repositories {
                 if (nrl.resolveArti) {
                     ivy {
@@ -60,10 +67,10 @@ class NRLPlugin implements Plugin<Project>{
                             artifact "[organisation]/[module]/[revision]/[type]s/[artifact]-[revision](-[classifier]).[ext]"
                         }
 
-                        if (nrl.artiPassword != null && nrl.artiUsername != null) {
+                        if (artiUN != null && artiPW != null) {
                             credentials {
-                                username = nrl.artiUsername
-                                password = nrl.artiPassword
+                                username = artiUN
+                                password = artiPW
                             }
                         }
                     }
@@ -75,41 +82,32 @@ class NRLPlugin implements Plugin<Project>{
                         }
                         allowInsecureProtocol = true
 
-                        if (nrl.artiPassword != null && nrl.artiUsername != null) {
+                        if (artiUN != null && artiPW != null) {
                             credentials {
-                                username = nrl.artiUsername
-                                password = nrl.artiPassword
+                                username = artiUN
+                                password = artiPW
                             }
                         }
                     }
                 }
-                if (nrl.resolveNexus) {
+                if (nrl.resolveGitlab) {
                     maven {
-                        url "$nrl.nexusURL/${RepoNames.NexusRelPubRepo.getName(nrl.groupCode)}"
-                        if (nrl.nexusPassword != null && nrl.nexusUsername != null) {
+                        url "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenRelease.getName(nrl.groupCode)}/packages/maven"
+                        if (glUN != null && glPW != null) {
                             credentials {
-                                username = nrl.nexusUsername
-                                password = nrl.nexusPassword
+                                username = glUN
+                                password = glPW
                             }
                         }
                     }
                     if (!project.hgit.isReleaseBranch(project.hgit.fetchBranch())) {
                         maven {
-                            url "$nrl.nexusURL/${RepoNames.NexusSnapPubRepo.getName(nrl.groupCode)}"
-                            if (nrl.nexusPassword != null && nrl.nexusUsername != null) {
+                            url "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)}/packages/maven"
+                            if (glUN != null && glPW != null) {
                                 credentials {
-                                    username = nrl.nexusUsername
-                                    password = nrl.nexusPassword
+                                    username = glUN
+                                    password = glPW
                                 }
-                            }
-                        }
-                    }
-                    maven{
-                        url "$nrl.nexus3URL/repo1.maven.org"
-                        if (nrl.nexusPassword != null && nrl.nexusUsername != null) {
-                            credentials {
-                                username = nrl.nexusUsername
-                                password = nrl.nexusPassword
                             }
                         }
                     }
@@ -129,14 +127,19 @@ class NRLPlugin implements Plugin<Project>{
 
     static void configurePub(Project project)
     {
+        String artiPubUN = PropertyName.artiPublishUsername.getAsString(project)
+        String artiPubPW = PropertyName.artiPublishPassword.getAsString(project)
+        String glPubUN = PropertyName.gitlabPublishUsername.getAsString(project)
+        String glPubPW = PropertyName.gitlabPublishPassword.getAsString(project)
+
         NRLExtension nrl = project.extensions.getByType(NRLExtension)
         project.pub {
             if (nrl.publishArti) {
                 repo {
                     name = "arti"
                     url = nrl.artiURL
-                    username = nrl.artiUsername
-                    password = nrl.artiPassword
+                    username = artiPubUN
+                    password = artiPubPW
                     snapshot {
                         key = RepoNames.DevPublishRepo.getName(nrl.groupCode)
                     }
@@ -145,30 +148,31 @@ class NRLPlugin implements Plugin<Project>{
                     }
                 }
             }
-            if (nrl.publishNexus) {
+            if (nrl.publishGitlab) {
                 repo {
-                    name = "nexus"
-                    url = nrl.nexusURL
-                    username = nrl.nexusUsername
-                    password = nrl.nexusPassword
+                    name = "gitlab"
+                    url = nrl.gitlabURL
+                    pattern = "{url}/api/v4/projects/{key}/packages/maven"
+                    username = glPubUN
+                    password = glPubPW
 
                     release {
-                        key = RepoNames.NexusRelPubRepo.getName(nrl.groupCode)
+                        key = RepoNames.GitlabMavenRelease.getName(nrl.groupCode)
                         maven = true
                     }
                     snapshot {
-                        key = RepoNames.NexusSnapPubRepo.getName(nrl.groupCode)
+                        key = RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)
                         maven = true
                     }
                 }
                 repo{
-                    name = "nexusYum"
-                    url = nrl.nexus3URL
-                    username = nrl.nexusUsername
-                    password = nrl.nexusPassword
+                    name = "artiYum"
+                    url = nrl.artiURL
+                    username = artiPubUN
+                    password = artiPubPW
 
                     yum{
-                        key = RepoNames.NexusYumPubRepo.getName(nrl.groupCode)
+                        key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
                     }
                 }
             }
