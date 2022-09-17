@@ -146,6 +146,9 @@ class NRLPlugin implements Plugin<Project>{
                     release {
                         key = RepoNames.ReleasePublishRepo.getName(nrl.groupCode)
                     }
+                    yum{
+                        key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
+                    }
                 }
             }
             if (nrl.publishGitlab) {
@@ -163,16 +166,6 @@ class NRLPlugin implements Plugin<Project>{
                     snapshot {
                         key = RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)
                         maven = true
-                    }
-                }
-                repo{
-                    name = "artiYum"
-                    url = nrl.artiURL
-                    username = artiPubUN
-                    password = artiPubPW
-
-                    yum{
-                        key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
                     }
                 }
             }
