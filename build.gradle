@@ -23,7 +23,7 @@ dependencies {
     api 'mil.navy.nrlssc:appdist-plugin:3.0.32'
     api 'mil.navy.nrlssc:hgit-plugin:3.0.57'
     api 'mil.navy.nrlssc:pub-plugin:3.0.33'
-    api 'mil.navy.nrlssc:util-plugin:3.0.15'
+    api 'mil.navy.nrlssc:util-plugin:3.0.17'
 
     testCompileClasspath gradleTestKit(),
             'junit:junit:4.12'
