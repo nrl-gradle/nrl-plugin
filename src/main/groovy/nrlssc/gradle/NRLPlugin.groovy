@@ -146,7 +146,7 @@ class NRLPlugin implements Plugin<Project>{
                     release {
                         key = RepoNames.ReleasePublishRepo.getName(nrl.groupCode)
                     }
-                    yum{
+                    yum {
                         key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
                     }
                 }
