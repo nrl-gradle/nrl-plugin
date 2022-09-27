@@ -145,10 +145,10 @@ class NRLPlugin implements Plugin<Project>{
         String glPubUN = PropertyName.gitlabPublishUsername.getAsString(project)
         String glPubPW = PropertyName.gitlabPublishPassword.getAsString(project)
 
-        if(artiPubUN == null) artiPubUN = artiUN
-        if(artiPubPW == null) artiPubPW = artiPW
-        if(glPubUN == null) glPubUN = glUN
-        if(glPubPW == null) glPubPW = glPW
+        if(artiPubUN == null || artiPubUN.isEmpty()) artiPubUN = artiUN
+        if(artiPubPW == null || artiPubPW.isEmpty()) artiPubPW = artiPW
+        if(glPubUN == null || glPubUN.isEmpty()) glPubUN = glUN
+        if(glPubPW == null || glPubPW.isEmpty()) glPubPW = glPW
 
 
 
