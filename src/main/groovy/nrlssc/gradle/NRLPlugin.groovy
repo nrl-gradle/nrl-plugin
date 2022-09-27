@@ -6,9 +6,11 @@ import nrlssc.gradle.helpers.RepoNames
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.credentials.HttpHeaderCredentials
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.tasks.Copy
+import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -94,9 +96,12 @@ class NRLPlugin implements Plugin<Project>{
                     maven {
                         url "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenRelease.getName(nrl.groupCode)}/packages/maven"
                         if (glUN != null && glPW != null) {
-                            credentials {
-                                username = glUN
-                                password = glPW
+                            credentials(HttpHeaderCredentials) {
+                                name = glUN
+                                value = glPW
+                            }
+                            authentication {
+                                header(HttpHeaderAuthentication)
                             }
                         }
                     }
@@ -104,9 +109,12 @@ class NRLPlugin implements Plugin<Project>{
                         maven {
                             url "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)}/packages/maven"
                             if (glUN != null && glPW != null) {
-                                credentials {
-                                    username = glUN
-                                    password = glPW
+                                credentials(HttpHeaderCredentials) {
+                                    name = glUN
+                                    value = glPW
+                                }
+                                authentication {
+                                    header(HttpHeaderAuthentication)
                                 }
                             }
                         }
@@ -127,10 +135,22 @@ class NRLPlugin implements Plugin<Project>{
 
     static void configurePub(Project project)
     {
+        String artiUN = PropertyName.artiUsername.getAsString(project)
+        String artiPW = PropertyName.artiPassword.getAsString(project)
+        String glUN = PropertyName.gitlabUsername.getAsString(project)
+        String glPW = PropertyName.gitlabPassword.getAsString(project)
+
         String artiPubUN = PropertyName.artiPublishUsername.getAsString(project)
         String artiPubPW = PropertyName.artiPublishPassword.getAsString(project)
         String glPubUN = PropertyName.gitlabPublishUsername.getAsString(project)
         String glPubPW = PropertyName.gitlabPublishPassword.getAsString(project)
+
+        if(artiPubUN == null) artiPubUN = artiUN
+        if(artiPubPW == null) artiPubPW = artiPW
+        if(glPubUN == null) glPubUN = glUN
+        if(glPubPW == null) glPubPW = glPW
+
+
 
         NRLExtension nrl = project.extensions.getByType(NRLExtension)
         project.pub {
@@ -140,6 +160,7 @@ class NRLPlugin implements Plugin<Project>{
                     url = nrl.artiURL
                     username = artiPubUN
                     password = artiPubPW
+
                     snapshot {
                         key = RepoNames.DevPublishRepo.getName(nrl.groupCode)
                     }
@@ -156,9 +177,14 @@ class NRLPlugin implements Plugin<Project>{
                     name = "gitlab"
                     url = nrl.gitlabURL
                     pattern = "{url}/api/v4/projects/{key}/packages/maven"
-                    username = glPubUN
-                    password = glPubPW
 
+                    credentials(HttpHeaderCredentials) {
+                        name = glPubUN
+                        value = glPubPW
+                    }
+                    authentication {
+                        header(HttpHeaderAuthentication)
+                    }
                     release {
                         key = RepoNames.GitlabMavenRelease.getName(nrl.groupCode)
                         maven = true
