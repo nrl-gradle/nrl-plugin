@@ -45,7 +45,7 @@ class NRLExtension {
     }
 
     boolean isPublishSecondary(){
-        return publishSecondary
+        return pubSecondaryGitlab
     }
     
     String getGroupCode(){
