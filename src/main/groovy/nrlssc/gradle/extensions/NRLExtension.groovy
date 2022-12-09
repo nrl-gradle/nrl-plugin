@@ -15,6 +15,9 @@ class NRLExtension {
     boolean publishGitlab = false
     boolean resolveGitlab = false
 
+    boolean pubSecondaryGitlab = false
+    String gitlabProject = ""
+
     
     String groupCode = 'NRLSSCGEO'
     
@@ -30,6 +33,19 @@ class NRLExtension {
     
     void setGroupCode(int code){
         groupCode = code.toString()
+    }
+
+    void setGitlabProject(String gitlabProject){
+        this.gitlabProject = gitlabProject
+        pubSecondaryGitlab = true
+    }
+
+    String getGitlabProject(){
+        return gitlabProject
+    }
+
+    boolean isPublishSecondary(){
+        return publishSecondary
     }
     
     String getGroupCode(){

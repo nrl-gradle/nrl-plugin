@@ -195,6 +195,36 @@ class NRLPlugin implements Plugin<Project>{
                     }
                 }
             }
+            if (nrl.publishSecondary) {
+                String projUN = PropertyName.gitlabProjectUsername.getAsString(project)
+                String projPW = PropertyName.gitlabProjectPassword.getAsString(project)
+
+                if(projUN == null || projUN.isEmpty()) projUN = glPubUN
+                if(projPW == null || projPW.isEmpty()) projPW = glPubPW
+
+
+                repo {
+                    name = "gitlabProject"
+                    url = nrl.gitlabURL
+                    pattern = "{url}/api/v4/projects/{key}/packages/maven"
+
+                    credentials(HttpHeaderCredentials) {
+                        name = projUN
+                        value = projPW
+                    }
+                    authentication {
+                        header(HttpHeaderAuthentication)
+                    }
+                    release {
+                        key = nrl.gitlabProject
+                        maven = true
+                    }
+                    snapshot {
+                        key = nrl.gitlabProject
+                        maven = true
+                    }
+                }
+            }
         }
     }
     
