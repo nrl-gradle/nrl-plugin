@@ -22,8 +22,8 @@ dependencies {
     api 'mil.navy.nrlssc:gplugin-commons:3.0.15'
     api 'mil.navy.nrlssc:appdist-plugin:3.0.34'
     api 'mil.navy.nrlssc:hgit-plugin:3.0.57'
-    api 'mil.navy.nrlssc:pub-plugin:3.0.37'
-    api 'mil.navy.nrlssc:util-plugin:3.0.19'
+    api 'mil.navy.nrlssc:pub-plugin:3.0.40'
+    api 'mil.navy.nrlssc:util-plugin:3.0.20'
 
     testCompileClasspath gradleTestKit(),
             'junit:junit:4.12'
