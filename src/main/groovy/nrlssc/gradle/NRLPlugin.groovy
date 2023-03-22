@@ -58,9 +58,9 @@ class NRLPlugin implements Plugin<Project>{
                 if (nrl.resolveArti) {
                     ivy {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiURL/list/${RepoNames.RemoteIvyRepo.getName(nrl.groupCode)}/"
+                            url "$nrl.artiURL/${RepoNames.RemoteIvyRepo.getName(nrl.groupCode)}/"
                         } else {
-                            url "$nrl.artiURL/list/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
+                            url "$nrl.artiURL/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
                         }
                         allowInsecureProtocol = true
 
@@ -78,9 +78,9 @@ class NRLPlugin implements Plugin<Project>{
                     }
                     maven {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiURL/list/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}"
+                            url "$nrl.artiURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}"
                         } else {
-                            url "$nrl.artiURL/list/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}"
+                            url "$nrl.artiURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}"
                         }
                         allowInsecureProtocol = true
 
