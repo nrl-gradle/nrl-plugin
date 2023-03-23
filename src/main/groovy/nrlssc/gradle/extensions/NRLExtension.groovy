@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 class NRLExtension {
     private static Logger logger = LoggerFactory.getLogger(NRLExtension.class)
 
-    String artiURL = 'http://mingus.nrlssc.navy.mil/artifactory/list'
+    String artiURL = 'https://art.nrlssc.org/artifactory'
     String gitlabURL = 'https://gitlab.nrlssc.org'
     boolean publishArti = true
     boolean resolveArti = true
