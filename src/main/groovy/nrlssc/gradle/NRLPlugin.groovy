@@ -112,12 +112,7 @@ class NRLPlugin implements Plugin<Project>{
                             url "$nrl.artiURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}"
                         }
                         allowInsecureProtocol = true
-                        if (artiUN != null && artiPW != null) {
-                            credentials {
-                                username = artiUN
-                                password = artiPW
-                            }
-                        }
+
                     }
                 }
                 if (nrl.resolveGitlab) {
