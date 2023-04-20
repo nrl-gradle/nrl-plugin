@@ -107,9 +107,9 @@ class NRLPlugin implements Plugin<Project>{
                     }
                     maven {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}"
+                            url "$nrl.artiLegacyURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}"
                         } else {
-                            url "$nrl.artiURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}"
+                            url "$nrl.artiLegacyURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}"
                         }
                         allowInsecureProtocol = true
 
