@@ -9,9 +9,12 @@ class NRLExtension {
     private static Logger logger = LoggerFactory.getLogger(NRLExtension.class)
 
     String artiURL = 'https://art.nrlssc.org/artifactory'
+    String artiLegacyURL = 'http://mingus.nrlssc.navy.mil/artifactory/list'
     String gitlabURL = 'https://gitlab.nrlssc.org'
     boolean publishArti = true
     boolean resolveArti = true
+    boolean resolveArtiLegacy = true
+    boolean publishArtiLegacy = true
     boolean publishGitlab = false
     boolean resolveGitlab = true
 
