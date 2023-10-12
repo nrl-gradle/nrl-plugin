@@ -13,8 +13,8 @@ class NRLExtension {
     String gitlabURL = 'https://gitlab.nrlssc.org'
     boolean publishArti = true
     boolean resolveArti = true
-    boolean resolveArtiLegacy = true
-    boolean publishArtiLegacy = true
+    boolean resolveArtiLegacy = false
+    boolean publishArtiLegacy = false
     boolean publishGitlab = false
     boolean resolveGitlab = true
 
