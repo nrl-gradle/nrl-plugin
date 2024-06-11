@@ -21,7 +21,7 @@ class NRLExtension {
     boolean pubSecondaryGitlab = false
     String gitlabProject = ""
 
-    boolean legacyPublish = true;
+    boolean legacyPublish = false
     
     String groupCode = 'NRLSSCGEO'
     
