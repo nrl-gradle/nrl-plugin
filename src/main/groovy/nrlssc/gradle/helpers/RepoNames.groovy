@@ -4,8 +4,11 @@ enum RepoNames {
     LocalMavenRepo(['NRLSSCGEO': 'libs-all-local']), RemoteMavenRepo(['NRLSSCGEO': 'libs-all']),
     LocalIvyRepo(['NRLSSCGEO': 'ivy-all-local']), RemoteIvyRepo(['NRLSSCGEO': 'ivy-all']),
 
-    ReleasePublishRepo(['NRLSSCGEO': 'ivy-release-local', '7441': 'ivy-release-local-7441']),
-    DevPublishRepo(['NRLSSCGEO': 'ivy-dev-local', '7441': 'ivy-dev-local-7441']),
+    ReleasePublishRepo(['NRLSSCGEO': 'libs-release-local']),
+    DevPublishRepo(['NRLSSCGEO': 'libs-snapshot-local']),
+
+    LegacyReleasePublishRepo(['NRLSSCGEO': 'ivy-release-local', '7441': 'ivy-release-local-7441']),
+    LegacyDevPublishRepo(['NRLSSCGEO': 'ivy-dev-local', '7441': 'ivy-dev-local-7441']),
 
     YumPublishRepo(['NRLSSCGEO': 'rpm-release-local']),
 

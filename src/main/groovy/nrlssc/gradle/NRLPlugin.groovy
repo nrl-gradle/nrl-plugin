@@ -178,22 +178,43 @@ class NRLPlugin implements Plugin<Project>{
         NRLExtension nrl = project.extensions.getByType(NRLExtension)
         project.pub {
             if (nrl.publishArti) {
+
                 repo {
                     name = "arti"
                     url = nrl.artiURL
                     username = artiPubUN
                     password = artiPubPW
 
-                    snapshot {
-                        key = RepoNames.DevPublishRepo.getName(nrl.groupCode)
+                    if(nrl.legacyPublish)
+                    {
+                        snapshot {
+                            key = RepoNames.LegacyDevPublishRepo.getName(nrl.groupCode)
+                        }
+                        release {
+                            key = RepoNames.LegacyReleasePublishRepo.getName(nrl.groupCode)
+                        }
                     }
-                    release {
-                        key = RepoNames.ReleasePublishRepo.getName(nrl.groupCode)
+                    else
+                    {
+                        snapshot {
+                            key = RepoNames.DevPublishRepo.getName(nrl.groupCode)
+                            maven = true
+                        }
+                        release {
+                            key = RepoNames.ReleasePublishRepo.getName(nrl.groupCode)
+                            maven = true
+                        }
                     }
+
+
+
                     yum {
                         key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
                     }
+
                 }
+
+
             }
             if (nrl.publishGitlab) {
                 repo {
