@@ -31,6 +31,7 @@ class NRLPlugin implements Plugin<Project>{
         project.pluginManager.apply(UtilPlugin)
 
 
+
         project.gradle.taskGraph.whenReady {
             for (Task tsk : project.gradle.taskGraph.getAllTasks()) {
                 if (tsk.name.equalsIgnoreCase("xsd-dependency-tree")) {
@@ -206,17 +207,21 @@ class NRLPlugin implements Plugin<Project>{
                         }
                     }
 
-
-
                     yum {
                         key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
+                    }
+
+                    if (nrl.publishDocker){
+                        docker{
+                            key = nrl.dockerURL
+                        }
                     }
 
                 }
 
 
             }
-            if (nrl.publishGitlab) {
+            if (nrl.publishGitlab && (nrl.gitlabProject != null && nrl.gitlabProject.length() > 0)) {
                 repo {
                     name = "gitlab"
                     url = nrl.gitlabURL
@@ -230,45 +235,48 @@ class NRLPlugin implements Plugin<Project>{
                         header(HttpHeaderAuthentication)
                     }
                     release {
-                        key = RepoNames.GitlabMavenRelease.getName(nrl.groupCode)
+                        key = nrl.gitlabProject
                         maven = true
                     }
                     snapshot {
-                        key = RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)
+                        key = nrl.gitlabProject
                         maven = true
                     }
                 }
             }
             if (nrl.publishSecondary) {
-                String projUN = PropertyName.gitlabProjectUsername.getAsString(project)
-                String projPW = PropertyName.gitlabProjectPassword.getAsString(project)
+                for(String projID in nrl.getExtraGitlabProjects()) {
+                    String projUN = nrl.extraGitlabUsers.getOrDefault(projID, null)
+                    String projPW = nrl.extraGitlabPws.getOrDefault(projID, null)
 
-                if(projUN == null || projUN.isEmpty()) projUN = glPubUN
-                if(projPW == null || projPW.isEmpty()) projPW = glPubPW
+                    if (projUN == null || projUN.isEmpty()) projUN = glPubUN
+                    if (projPW == null || projPW.isEmpty()) projPW = glPubPW
 
 
-                repo {
-                    name = "gitlabProject"
-                    url = nrl.gitlabURL
-                    pattern = "{url}/api/v4/projects/{key}/packages/maven"
+                    repo {
+                        name = "gitlabProject-" + projID
+                        url = nrl.gitlabURL
+                        pattern = "{url}/api/v4/projects/{key}/packages/maven"
 
-                    credentials(HttpHeaderCredentials) {
-                        name = projUN
-                        value = projPW
-                    }
-                    authentication {
-                        header(HttpHeaderAuthentication)
-                    }
-                    release {
-                        key = nrl.gitlabProject
-                        maven = true
-                    }
-                    snapshot {
-                        key = nrl.gitlabProject
-                        maven = true
+                        credentials(HttpHeaderCredentials) {
+                            name = projUN
+                            value = projPW
+                        }
+                        authentication {
+                            header(HttpHeaderAuthentication)
+                        }
+                        release {
+                            key = projID
+                            maven = true
+                        }
+                        snapshot {
+                            key = projID
+                            maven = true
+                        }
                     }
                 }
             }
+
         }
     }
     
