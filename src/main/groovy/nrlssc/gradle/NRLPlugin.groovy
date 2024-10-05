@@ -24,8 +24,11 @@ class NRLPlugin implements Plugin<Project>{
         NRLExtension nrlext = project.extensions.create("nrl", NRLExtension, project)
         nrlext.loadProperties()
         
-        project.pluginManager.apply(JavaPlugin)
-        project.pluginManager.apply(AppDistPlugin)
+//        project.pluginManager.apply(JavaPlugin)
+        project.pluginManager.withPlugin('java'){
+            project.pluginManager.apply(AppDistPlugin)
+        }
+
         project.pluginManager.apply(HGitPlugin)
         project.pluginManager.apply(PubPlugin)
         project.pluginManager.apply(UtilPlugin)
