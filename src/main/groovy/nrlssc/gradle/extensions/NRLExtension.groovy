@@ -16,7 +16,7 @@ class NRLExtension {
     boolean resolveArti = true
     boolean resolveArtiLegacy = false
     boolean publishArtiLegacy = false
-    boolean publishGitlab = true
+    boolean publishGitlab = false
     boolean resolveGitlab = false
     String gitlabProject = ""  //now used for main project instead of secondary
 
