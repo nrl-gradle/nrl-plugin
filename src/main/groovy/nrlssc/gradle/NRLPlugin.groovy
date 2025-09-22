@@ -8,7 +8,6 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.credentials.HttpHeaderCredentials
 import org.gradle.api.file.DuplicatesStrategy
-import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.tasks.Copy
 import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.slf4j.Logger
@@ -219,7 +218,6 @@ class NRLPlugin implements Plugin<Project>{
                             key = nrl.dockerURL
                         }
                     }
-
                 }
 
 
@@ -230,6 +228,8 @@ class NRLPlugin implements Plugin<Project>{
                     url = nrl.gitlabURL
                     pattern = "{url}/api/v4/projects/{key}/packages/maven"
 
+                    username = glPubUN
+                    password = glPubPW
                     credentials(HttpHeaderCredentials) {
                         name = glPubUN
                         value = glPubPW
@@ -244,6 +244,12 @@ class NRLPlugin implements Plugin<Project>{
                     snapshot {
                         key = nrl.gitlabProject
                         maven = true
+                    }
+
+                    if(nrl.publishGitlabDocker) {
+                        docker {
+                            key = nrl.gitlabDockerURL
+                        }
                     }
                 }
             }
@@ -279,7 +285,24 @@ class NRLPlugin implements Plugin<Project>{
                     }
                 }
             }
+            if (nrl.pubSecondaryDocker) {
+                for(String regUrl in nrl.getExtraDockerRegistries()) {
+                    String projUN = nrl.extraDockerUsers.getOrDefault(regUrl, null)
+                    String projPW = nrl.extraDockerPws.getOrDefault(regUrl, null)
 
+                    repo {
+                        name = "dockerRegistry-" + regUrl.replaceAll(/\./, '_').replaceAll(/[^A-Za-z0-9_]/, '')
+                        url = regUrl
+
+                        username = projUN
+                        password = projPW
+
+                        docker{
+                            key = regUrl
+                        }
+                    }
+                }
+            }
         }
     }
     

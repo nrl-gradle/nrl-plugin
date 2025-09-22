@@ -11,7 +11,8 @@ class NRLExtension {
     String artiURL = 'https://art.nrlssc.org/artifactory'
     String artiLegacyURL = 'http://mingus.nrlssc.navy.mil/artifactory/list'
     String gitlabURL = 'https://gitlab.nrlssc.org'
-    String dockerURL = 'docker.art.nrlssc.org' //only works with Arti right now
+    String dockerURL = 'art.nrlssc.org/docker' //only works with Arti right now
+    String gitlabDockerURL = 'registry.nrlssc.org'
     boolean publishArti = true
     boolean resolveArti = true
     boolean resolveArtiLegacy = false
@@ -20,12 +21,19 @@ class NRLExtension {
     boolean resolveGitlab = false
     String gitlabProject = ""  //now used for main project instead of secondary
 
+
     boolean publishDocker = false
+    boolean publishGitlabDocker = false
 
     boolean pubSecondaryGitlab = false
     List<String> extraGitlabProjects = new ArrayList<>()
     Map<String, String> extraGitlabUsers = new HashMap<>()
     Map<String, String> extraGitlabPws = new HashMap<>()
+
+    boolean pubSecondaryDocker = false
+    List<String> extraDocker = new ArrayList<>()
+    Map<String, String> extraDockerUsers = new HashMap<>()
+    Map<String, String> extraDockerPws = new HashMap<>()
 
     boolean legacyPublish = false
     
@@ -66,6 +74,17 @@ class NRLExtension {
         pubSecondaryGitlab = true
     }
 
+    void dockerPublish(String registryURL, String un, String pw){
+        this.extraDocker.add(registryURL)
+        this.extraDockerUsers.put(registryURL, un)
+        this.extraDockerPws.put(registryURL, pw)
+        pubSecondaryDocker = true
+    }
+
+    List<String> getExtraDockerRegistries(){
+        return this.extraDocker
+    }
+
     void setGitlabProject(String gitlabProject){
         this.gitlabProject = gitlabProject
     }
@@ -80,6 +99,14 @@ class NRLExtension {
 
     boolean isPublishDocker(){
         return this.publishDocker
+    }
+
+    void setPublishGitlabDocker(boolean publishDocker){
+        this.publishGitlabDocker = publishDocker
+    }
+
+    boolean isPublishGitlabDocker(){
+        return this.publishGitlabDocker
     }
 
     boolean isPublishSecondary(){
