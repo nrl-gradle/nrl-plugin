@@ -22,7 +22,7 @@ dependencies {
     api 'mil.navy.nrlssc:gplugin-commons:3.0.20'
     api 'mil.navy.nrlssc:appdist-plugin:3.0.43'
     api 'mil.navy.nrlssc:hgit-plugin:3.0.67'
-    api 'mil.navy.nrlssc:pub-plugin:3.0.49'
+    api 'mil.navy.nrlssc:pub-plugin:3.0.50'
     api 'mil.navy.nrlssc:util-plugin:3.0.24'
 
 
