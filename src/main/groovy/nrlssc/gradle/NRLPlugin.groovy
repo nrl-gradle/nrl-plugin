@@ -61,9 +61,9 @@ class NRLPlugin implements Plugin<Project>{
                 if (nrl.resolveArti) {
                     ivy {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiURL/${RepoNames.RemoteIvyRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiURL/${RepoNames.RemoteIvyRepo.getName(nrl.groupCode)}/"
                         } else {
-                            url "$nrl.artiURL/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiURL/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
                         }
 
                         patternLayout {
@@ -80,9 +80,9 @@ class NRLPlugin implements Plugin<Project>{
                     }
                     maven {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}/"
                         } else {
-                            url "$nrl.artiURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}/"
                         }
 
                         if (artiUN != null && artiPW != null) {
@@ -95,7 +95,7 @@ class NRLPlugin implements Plugin<Project>{
                 }
                 if (nrl.resolveGitlab) {
                     maven {
-                        url "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenRelease.getName(nrl.groupCode)}/packages/maven"
+                        url = "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenRelease.getName(nrl.groupCode)}/packages/maven"
                         if (glUN != null && glPW != null) {
                             credentials(HttpHeaderCredentials) {
                                 name = glUN
@@ -108,7 +108,7 @@ class NRLPlugin implements Plugin<Project>{
                     }
                     if (!project.hgit.isReleaseBranch(project.hgit.fetchBranch())) {
                         maven {
-                            url "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)}/packages/maven"
+                            url = "$nrl.gitlabURL/api/v4/projects/${RepoNames.GitlabMavenSnapshot.getName(nrl.groupCode)}/packages/maven"
                             if (glUN != null && glPW != null) {
                                 credentials(HttpHeaderCredentials) {
                                     name = glUN
@@ -124,9 +124,9 @@ class NRLPlugin implements Plugin<Project>{
                 if (nrl.resolveArtiLegacy) {
                     ivy {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiLegacyURL/${RepoNames.RemoteIvyRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiLegacyURL/${RepoNames.RemoteIvyRepo.getName(nrl.groupCode)}/"
                         } else {
-                            url "$nrl.artiLegacyURL/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiLegacyURL/${RepoNames.LocalIvyRepo.getName(nrl.groupCode)}/"
                         }
                         allowInsecureProtocol = true
 
@@ -138,9 +138,9 @@ class NRLPlugin implements Plugin<Project>{
                     }
                     maven {
                         if (nrl.remoteAllowed()) {
-                            url "$nrl.artiLegacyURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiLegacyURL/${RepoNames.RemoteMavenRepo.getName(nrl.groupCode)}/"
                         } else {
-                            url "$nrl.artiLegacyURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}/"
+                            url = "$nrl.artiLegacyURL/${RepoNames.LocalMavenRepo.getName(nrl.groupCode)}/"
                         }
                         allowInsecureProtocol = true
 
