@@ -29,7 +29,7 @@ java {
 dependencies {
     api gradleApi()
     implementation localGroovy()
-    api 'mil.navy.nrlssc:gplugin-commons:5.0.22'
+    api 'mil.navy.nrlssc:gplugin-commons:5.0.23'
     api 'mil.navy.nrlssc:appdist-plugin:5.0.45'
     api 'mil.navy.nrlssc:hgit-plugin:5.0.70'
     api 'mil.navy.nrlssc:pub-plugin:5.0.55'
