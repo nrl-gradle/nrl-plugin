@@ -31,7 +31,7 @@ dependencies {
     implementation localGroovy()
     api 'mil.navy.nrlssc:gplugin-commons:5.0.24'
     api 'mil.navy.nrlssc:appdist-plugin:5.0.46'
-    api 'mil.navy.nrlssc:hgit-plugin:5.0.72'
+    api 'mil.navy.nrlssc:hgit-plugin:5.0.73'
     api 'mil.navy.nrlssc:pub-plugin:5.0.57'
     api 'mil.navy.nrlssc:util-plugin:5.0.28'
     implementation 'gradle.plugin.org.yello-labs:keyring:0.1.0'
