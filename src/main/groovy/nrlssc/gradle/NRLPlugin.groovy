@@ -213,11 +213,12 @@ class NRLPlugin implements Plugin<Project>{
                         key = RepoNames.YumPublishRepo.getName(nrl.groupCode)
                     }
 
-                    if (nrl.publishDocker){
-                        docker{
-                            key = nrl.dockerURL
-                        }
+
+                    docker{
+                        key = nrl.dockerURL
+                        publish = nrl.publishDocker
                     }
+
                 }
 
 
@@ -246,11 +247,11 @@ class NRLPlugin implements Plugin<Project>{
                         maven = true
                     }
 
-                    if(nrl.publishGitlabDocker) {
-                        docker {
-                            key = nrl.gitlabDockerURL
-                        }
+                    docker {
+                        key = nrl.gitlabDockerURL
+                        publish = nrl.publishGitlabDocker
                     }
+
                 }
             }
             if (nrl.publishSecondary) {
