@@ -25,6 +25,10 @@ class NRLExtension {
     boolean publishDocker = false
     boolean publishGitlabDocker = false
 
+    String legalVersion = "1.1"
+    String sectionCode = "7340"
+    String poc = "Naval Research Laboratory"
+
     boolean pubSecondaryGitlab = false
     List<String> extraGitlabProjects = new ArrayList<>()
     Map<String, String> extraGitlabUsers = new HashMap<>()
@@ -120,6 +124,14 @@ class NRLExtension {
     String getGroupCode(){
         return groupCode
     }
+
+    void legal(String legalVersion, String sectionCode, String poc)
+    {
+        this.legalVersion = legalVersion
+        this.sectionCode = sectionCode
+        this.poc = poc
+    }
+
     
     void loadProperties()
     {

@@ -3,6 +3,7 @@ package nrlssc.gradle
 import nrlssc.gradle.extensions.NRLExtension
 import nrlssc.gradle.helpers.PropertyName
 import nrlssc.gradle.helpers.RepoNames
+import nrlssc.gradle.tasks.AddCopyrightTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -34,6 +35,7 @@ class NRLPlugin implements Plugin<Project>{
 
 
 
+
         project.gradle.taskGraph.whenReady {
             for (Task tsk : project.gradle.taskGraph.getAllTasks()) {
                 if (tsk.name.equalsIgnoreCase("xsd-dependency-tree")) {
@@ -46,6 +48,13 @@ class NRLPlugin implements Plugin<Project>{
 
         project.tasks.withType(Copy.class){
             it.duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+
+        project.tasks.withType(AddCopyrightTask.class){ ac ->
+            ac.poc = nrlext.poc
+            ac.legalVersion = nrlext.legalVersion
+            ac.sectionCode = nrlext.sectionCode
+            project.tasks.getByName('assemble').dependsOn(ac)
         }
         
         project.afterEvaluate {
