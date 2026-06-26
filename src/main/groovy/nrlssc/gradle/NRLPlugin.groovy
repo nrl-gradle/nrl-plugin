@@ -50,15 +50,17 @@ class NRLPlugin implements Plugin<Project>{
             it.duplicatesStrategy = DuplicatesStrategy.INCLUDE
         }
 
-        project.tasks.withType(AddCopyrightTask.class){ ac ->
-            ac.poc = nrlext.poc
-            ac.legalVersion = nrlext.legalVersion
-            ac.sectionCode = nrlext.sectionCode
-            project.tasks.getByName('assemble').dependsOn(ac)
-        }
+
+
         
         project.afterEvaluate {
             NRLExtension nrl = project.extensions.getByType(NRLExtension)
+            project.tasks.withType(AddCopyrightTask.class){ ac ->
+                ac.poc(nrl.poc)
+                ac.legalVersion(nrl.legalVersion)
+                ac.sectionCode(nrl.sectionCode)
+                project.tasks.getByName('compileJava').dependsOn(ac)
+            }
 
             String artiUN = PropertyName.artiUsername.getAsString(project)
             String artiPW = PropertyName.artiPassword.getAsString(project)
