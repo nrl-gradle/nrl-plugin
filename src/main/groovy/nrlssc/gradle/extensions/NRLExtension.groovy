@@ -170,6 +170,6 @@ class NRLExtension {
     
     boolean remoteAllowed()
     {
-        return !project.hgit.isCI() && PropertyName.resolveRemote.getAsBoolean(project)
+        return true;//Always enabled now.  CCB is no longer centrally managed, each project must manage their own artifact approvals.  //!project.hgit.isCI() && PropertyName.resolveRemote.getAsBoolean(project)
     }
 }
