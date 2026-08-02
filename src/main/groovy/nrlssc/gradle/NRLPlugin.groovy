@@ -3,7 +3,6 @@ package nrlssc.gradle
 import nrlssc.gradle.extensions.NRLExtension
 import nrlssc.gradle.helpers.PropertyName
 import nrlssc.gradle.helpers.RepoNames
-import nrlssc.gradle.tasks.AddCopyrightTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -27,7 +26,18 @@ class NRLPlugin implements Plugin<Project>{
 //        project.pluginManager.apply(JavaPlugin)
         project.pluginManager.withPlugin('java'){
             project.pluginManager.apply(AppDistPlugin)
+            project.pluginManager.apply(org.gradle.testing.jacoco.plugins.JacocoPlugin)
+            project.tasks.getByName('jacocoTestReport').configure {
+                reports {
+                    xml.required = true
+                    csv.required = true
+                    html.required = true
+                }
+            }
+            project.pluginManager.apply(org.sonarqube.gradle.SonarQubePlugin)
+            project.pluginManager.apply(org.cyclonedx.gradle.CyclonedxPlugin)
         }
+
 
         project.pluginManager.apply(HGitPlugin)
         project.pluginManager.apply(PubPlugin)
@@ -55,11 +65,11 @@ class NRLPlugin implements Plugin<Project>{
         
         project.afterEvaluate {
             NRLExtension nrl = project.extensions.getByType(NRLExtension)
-            project.tasks.withType(AddCopyrightTask.class){ ac ->
+            project.tasks.withType(nrlssc.gradle.tasks.AddLegalHeaderTask.class){ ac ->
+                ac.legalText(nrl.legalText)
                 ac.poc(nrl.poc)
                 ac.legalVersion(nrl.legalVersion)
                 ac.sectionCode(nrl.sectionCode)
-                project.tasks.getByName('compileJava').dependsOn(ac)
             }
 
             String artiUN = PropertyName.artiUsername.getAsString(project)

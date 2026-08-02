@@ -172,4 +172,66 @@ class NRLExtension {
     {
         return true;//Always enabled now.  CCB is no longer centrally managed, each project must manage their own artifact approvals.  //!project.hgit.isCI() && PropertyName.resolveRemote.getAsBoolean(project)
     }
+
+    String legalText = """* =============================================================================
+* CONTROLLED UNCLASSIFIED INFORMATION // SPECIFIED - TECHNICAL INFORMATION
+* =============================================================================
+*
+* DESIGNATION INDICATOR: 
+* Controlled by: Department of the Navy
+* Controlled by: U.S. Naval Research Laboratory (NRL), Code [SECTION_CODE]
+* CUI Category: CUI//SP-CTI
+* Distribution Statement: Distribution Statement D
+* POC: [POC]
+*
+* PATENT & LICENSE NOTICE:
+* This software is a Work of the United States Government and implements
+* technology patented by the Department of the Navy.
+*
+* Where applicable, please refer to the LICENSE.txt file located in the
+* root directory of this project.
+*
+* =============================================================================
+* NAVAL RESEARCH LABORATORY PROPRIETARY SOURCE CODE
+* =============================================================================
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of the U.S. Government as represented by the Secretary
+* of the Navy. The intellectual and technical concepts contained
+* herein are proprietary to the U.S. Government and may be covered
+* by U.S. and Foreign Patents and patents in process.
+*
+* Dissemination of this information or reproduction of this material
+* outside the Department of Defense or other authorized U.S. Government
+* agency is strictly forbidden. Usage rights for this Software are
+* freely granted to the Department of Defense and other authorized U.S.
+* Government agencies, and any commercial sale of this Software or
+* derivative works of this Software to these agencies is prohibited.
+*
+* Released under the DoD Community Source Usage Agreement Version 1.1 by
+* the Naval Research Laboratory (NRL); you may not use this file except
+* in compliance with the terms and conditions of DFARS 227.7103-7 (Use
+* and non-disclosure agreement), 252.204-7000 (Disclosure of Information)
+* and 252.227-7025 (Limitations on the Use or Disclosure of
+* Government-Furnished Information Marked with Restrictive Legends). Other
+* requests must be referred to the NRL. This Software is distributed on
+* an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
+*
+* Distribution authorized to U.S. Government Agencies and their
+* contractors. Other requests for this document shall be referred to
+* the NRL. Disseminate in accordance with provisions of DoD Directive
+* 5230.25.
+*
+* See the DCS Usage Agreement for the specific language governing
+* permissions and limitations. You may obtain a copy of the Agreement
+* at https://software.forge.mil/sf/go/doc1216
+"""
+
+    String getLegalText(){
+        return legalText
+    }
+
+    void setLegalText(String text){
+        this.legalText = text
+    }
 }
