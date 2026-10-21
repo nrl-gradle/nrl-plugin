@@ -3,6 +3,8 @@ package nrlssc.gradle
 import nrlssc.gradle.extensions.NRLExtension
 import nrlssc.gradle.helpers.PropertyName
 import nrlssc.gradle.helpers.RepoNames
+import org.cyclonedx.gradle.CyclonedxAggregateTask
+import org.cyclonedx.gradle.CyclonedxDirectTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -60,7 +62,9 @@ class NRLPlugin implements Plugin<Project>{
             it.duplicatesStrategy = DuplicatesStrategy.INCLUDE
         }
 
-
+        project.tasks.withType(CyclonedxDirectTask.class){
+            skipConfigs = ['updateResolver.*']
+        }
 
         
         project.afterEvaluate {
