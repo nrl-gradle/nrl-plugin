@@ -32,7 +32,7 @@ dependencies {
     api 'mil.navy.nrlssc:gplugin-commons:5.0.24'
     api 'mil.navy.nrlssc:appdist-plugin:5.0.46'
     api 'mil.navy.nrlssc:hgit-plugin:5.0.73'
-    api 'mil.navy.nrlssc:pub-plugin:5.1.12'
+    api 'mil.navy.nrlssc:pub-plugin:5.1.13'
     api 'mil.navy.nrlssc:util-plugin:5.1.12'
     api 'org.sonarqube:org.sonarqube.gradle.plugin:7.3.1.8318'
     api 'org.cyclonedx.bom:org.cyclonedx.bom.gradle.plugin:3.5.1'
